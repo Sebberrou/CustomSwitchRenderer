@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Xamarin.Forms.Platform.Android;
-using ModeSwitchCustom;
-using Xamarin.Forms;
-using ModeSwitchCustom.Droid;
+﻿using Android.Content;
 using Android.Graphics;
+using Android.OS;
+using ModeSwitchCustom.Droid;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ModeSwitchCustom.ModeSwitch), typeof(ModeSwitchRenderer))]
 namespace ModeSwitchCustom.Droid
@@ -24,7 +14,7 @@ namespace ModeSwitchCustom.Droid
         ModeSwitch view;
         public ModeSwitchRenderer(Context context) : base(context)
         {
-            System.Diagnostics.Debug.WriteLine("ctor Custom Renderer");
+
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Switch> e)
         {
@@ -36,38 +26,22 @@ namespace ModeSwitchCustom.Droid
             {
                 if (Control != null)
                 {
-                    if (Control.Checked)
-                    {
-                        Control.TrackDrawable.SetColorFilter(view.BackgroundTintColor.ToAndroid(), PorterDuff.Mode.SrcAtop);
-            
-                    }
-                    else
-                    {
-                        Control.TrackDrawable.SetColorFilter(Android.Graphics.Color.White, PorterDuff.Mode.SrcAtop);
-                       
-                    }
-                    Control.CheckedChange += OnCheckedChange;
+                   Control.TrackDrawable.SetColorFilter(
+                       view.BackgroundTintColor.ToAndroid(), 
+                       PorterDuff.Mode.Src
+                       );
+                   Control.ThumbDrawable.SetColorFilter(
+                       view.ThumbTintColor.ToAndroid(),
+                       PorterDuff.Mode.SrcAtop
+                       );
+                   
                 }
-                Control.ThumbDrawable.SetColorFilter(view.ThumbTintColor.ToAndroid(), PorterDuff.Mode.Multiply);
             }
         }
-
-
-        private void OnCheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
-        {
-            if (Control.Checked)
-            {
-                Control.TrackDrawable.SetColorFilter(view.BackgroundTintColor.ToAndroid(), PorterDuff.Mode.SrcAtop);
-            }
-            else
-            {
-                Control.TrackDrawable.SetColorFilter(Android.Graphics.Color.White, PorterDuff.Mode.SrcAtop);
-            }
-        }
-        protected override void Dispose(bool disposing)
-        {
-            Control.CheckedChange -= OnCheckedChange;
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+            
+        //    base.Dispose(disposing);
+        //}
     }
 }
