@@ -3,4 +3,6 @@ Xamarin form Custom renderer for Switch Element for select modes and not true/fa
 * BackgroundColorTintColor
 * ThumbTintColor
 
-Will be the same on Toggle on and Toggle off
+Colors will stay the same on Toggle on and Toggle off
+
+CustomRenderer for Android and iOS _Not tested on iOS_
