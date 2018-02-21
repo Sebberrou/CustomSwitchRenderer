@@ -19,6 +19,7 @@ namespace ModeSwitch.iOS
                 Control.ThumbTintColor = view.ThumbTintColor.ToUIColor();
                 Control.TintColor = view.BackgroundTintColor.ToUIColor();
                 Control.OnTintColor = view.BackgroundTintColor.ToUIColor();
+                Control.BackgroundColor = view.BackgroundTintColor.ToUIColor();
             }
         }
 

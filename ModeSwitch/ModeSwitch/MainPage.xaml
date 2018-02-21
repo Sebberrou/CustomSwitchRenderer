@@ -5,16 +5,34 @@
              x:Class="ModeSwitchCustom.MainPage">
 
     <StackLayout>
+        <local:ModeSwitch
+            x:Name="first"
+            Margin="20"
+            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            BackgroundTintColor="#CD0000"
+            ThumbTintColor="#CD0000"
+            Scale="1.4"
+            IsEnabled="False"
+            />
         <local:ModeSwitch  
             Margin="20"
             VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-            BackgroundTintColor="#ccceff"
-            ThumbTintColor="#383fff"
+            BackgroundTintColor="#CD0000"
+            ThumbTintColor="#000"
             Scale="1.4"/>
-        <Switch 
+        <local:ModeSwitch  
             Margin="20"
-            VerticalOptions="Center" HorizontalOptions="Center"
-            Scale="1.4"/>
-
+            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            BackgroundTintColor="#CD0000"
+            ThumbTintColor="#CD0000"
+            Scale="1.4"
+            />
+        <local:ModeSwitch  
+            Margin="20"
+            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            BackgroundTintColor="#000000"
+            ThumbTintColor="#000000"
+            Scale="1.4"
+            IsEnabled="False"/>
     </StackLayout>
 </ContentPage>

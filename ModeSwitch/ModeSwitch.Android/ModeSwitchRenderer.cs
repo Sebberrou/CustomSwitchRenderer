@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using System.ComponentModel;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using ModeSwitchCustom.Droid;
@@ -10,7 +11,7 @@ namespace ModeSwitchCustom.Droid
 {
     public class ModeSwitchRenderer : SwitchRenderer
     {
-        
+
         ModeSwitch view;
         public ModeSwitchRenderer(Context context) : base(context)
         {
@@ -26,22 +27,29 @@ namespace ModeSwitchCustom.Droid
             {
                 if (Control != null)
                 {
-                   Control.TrackDrawable.SetColorFilter(
-                       view.BackgroundTintColor.ToAndroid(), 
-                       PorterDuff.Mode.Src
-                       );
-                   Control.ThumbDrawable.SetColorFilter(
-                       view.ThumbTintColor.ToAndroid(),
-                       PorterDuff.Mode.SrcAtop
-                       );
-                   
+                    int[][] states = new int[][] {
+                        new int[] { Android.Resource.Attribute.StateEnabled}, // enabled
+                        new int[] { - Android.Resource.Attribute.StateEnabled}, // disabled
+                    };
+                    var backgroundColorsList = new Android.Content.Res.ColorStateList(states,
+                        new int[]{
+                        view.BackgroundTintColor.ToAndroid(),
+                        view.BackgroundTintColor.WithLuminosity(.9).ToAndroid()
+                        });
+
+                    var thumbColorsList = new Android.Content.Res.ColorStateList(states,
+                    new int[]{
+                        view.ThumbTintColor.ToAndroid(),
+                        view.ThumbTintColor.WithSaturation(.4).WithLuminosity(.8).ToAndroid()
+                    });
+
+
+                    //var thumbColor = view.ThumbTintColor.ToAndroidPreserveDisabled(thumbColorsList);
+
+                    Control.TrackTintList = backgroundColorsList;
+                    Control.ThumbTintList = thumbColorsList; 
                 }
             }
         }
-        //protected override void Dispose(bool disposing)
-        //{
-            
-        //    base.Dispose(disposing);
-        //}
     }
 }
